@@ -18,6 +18,6 @@ app.get('/api',(req, res) => {
     res.json(questions)
 })
 
-app.listen(PORT,() => {
+app.listen(process.env.port || PORT,() => {
     console.log("SERVER IS UP & RUNNING");
 })
