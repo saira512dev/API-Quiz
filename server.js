@@ -90,7 +90,7 @@ MongoClient.connect(
     app.post("/api/scores/add", (req, res) => {
       scores.insertOne(req.body)
         .then((result) => {
-          res.redirect("/");
+          //res.redirect("/");
           console.log(result);
         })
         .catch((error) => console.error(error));
