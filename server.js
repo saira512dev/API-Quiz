@@ -61,7 +61,7 @@ const questions = [
     },
     {
         'question': 'Which of the following is NOT a String method in JS?',
-        'choices': ["slice","", "indexOf", "length", "charAt"],
+        'choices': ["slice","indexOf", "length", "charAt"],
         'answer_index':3,
         'info' : "Length is a string property, not a method."
     },
