@@ -3,7 +3,12 @@ const bodyParser = require("body-parser");
 const cors = require('cors');
 const MongoClient = require("mongodb").MongoClient;
 const app = express();
-app.use(cors())
+app.use(
+    cors({
+        origin: "http://localhost:5500", 
+        credentials: true,
+    })
+);
 app.use(bodyParser.json());
 const PORT = 8000
 
