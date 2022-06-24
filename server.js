@@ -35,8 +35,36 @@ const questions = [
         'answer_index':0,
         'info' : "When the property name has more than one word, it is enclosed in quotes and is accessed using bracket notation"
     },
-    
-
+    {
+        'question': 'What is a settled promise? (Choose the most suitable answer)',
+        'choices': ["A promise that is rejected","A promise that is resolved", "A promise that is either resolved or rejected"],
+        'answer_index':2,
+        'info' : "A promise that is either resolved or rejected is called 'settled'. A fulfilled promise is the one which is resolved."
+    },
+    {
+        'question': 'Which of the following statements is false about prototypes in JS?',
+        'choices': ["Prototypes are used to create relationship between objects","Prototype in itself is a class", "Prototypes are used to share properties between objects", "Prototypes are used to delegate bhaviour between objects"],
+        'answer_index':1,
+        'info' : "The prototype is an object that is associated with every functions and objects by default in JavaScript."
+    },
+    {
+        'question': 'Which of the following is NOT a static method in the promise class?',
+        'choices': ["Promise.any()","Promise.all()", "Promise.race()", "Promise.init()"],
+        'answer_index':3,
+        'info' : "Promise API provides 6 static methods. They are :Promise.any(),Promise.all(),Promise.allSettled(), Promise.race(),Promise.resolve(),Promise.reject() "
+    },
+    {
+        'question': 'Which of the following is NOT a main principle of OOP in JS?',
+        'choices': ["polymorphism","abstraction", "encapsulation", "Prototypes"],
+        'answer_index':3,
+        'info' : "Promise API provides 6 static methods. They are :Promise.any(),Promise.all(),Promise.allSettled(), Promise.race(),Promise.resolve(),Promise.reject() "
+    },
+    {
+        'question': 'Which of the following is NOT a String method in JS?',
+        'choices': ["slice","", "indexOf", "length", "charAt"],
+        'answer_index':3,
+        'info' : "Length is a string property, not a method."
+    },
 ]
 app.get('/',(req, res) => {
     console.log("HAAAI")
