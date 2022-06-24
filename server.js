@@ -37,7 +37,7 @@ const questions = [
     },
     {
         'question': 'What is a settled promise? (Choose the most suitable answer)',
-        'choices': ["A promise that is rejected","A promise that is resolved", "A promise that is either resolved or rejected"],
+        'choices': ["A promise that is rejected","A promise that is resolved", "A promise that is either resolved or rejected","Any promise"],
         'answer_index':2,
         'info' : "A promise that is either resolved or rejected is called 'settled'. A fulfilled promise is the one which is resolved."
     },
