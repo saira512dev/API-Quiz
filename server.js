@@ -91,7 +91,7 @@ MongoClient.connect(
       scores.insertOne(req.body)
         .then((result) => {
           //res.redirect("/");
-          console.log(result);
+          res.send(result)
         })
         .catch((error) => console.error(error));
     });
