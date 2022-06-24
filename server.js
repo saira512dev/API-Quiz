@@ -3,12 +3,8 @@ const bodyParser = require("body-parser");
 const cors = require('cors');
 const MongoClient = require("mongodb").MongoClient;
 const app = express();
-app.use(
-    cors({
-        origin: "http://localhost:5500", 
-        credentials: true,
-    })
-);
+app.use(cors())
+
 app.use(bodyParser.json());
 const PORT = 8000
 
@@ -75,63 +71,63 @@ const questions = [
     },
 ]
 
-MongoClient.connect(
-   'mongodb+srv://quiz_user:quizUser_109@clusterquiz.qu2x8.mongodb.net/?retryWrites=true&w=majority'
-    ).then((client) => {
-    console.log("Connected to Database");
-    const db = client.db("QUIZ");
-    const scores = db.collection("scores");
+// MongoClient.connect(
+//    'mongodb+srv://quiz_user:quizUser_109@clusterquiz.qu2x8.mongodb.net/?retryWrites=true&w=majority'
+//     ).then((client) => {
+//     console.log("Connected to Database");
+//     const db = client.db("QUIZ");
+//     const scores = db.collection("scores");
   
-    app.get("/api/scores/all", (req, res) => {
-      scores
-        .find()
-        .toArray()
-        .then((results) => {
-          res.json(results)
-        })
-        .catch((error) => console.error(error));
-    });
-    app.post("/api/scores/add", (req, res) => {
-      scores.insertOne(req.body)
-        .then((result) => {
-          res.redirect("/");
-          console.log(result);
-        })
-        .catch((error) => console.error(error));
-    });
+//     app.get("/api/scores/all", (req, res) => {
+//       scores
+//         .find()
+//         .toArray()
+//         .then((results) => {
+//           res.json(results)
+//         })
+//         .catch((error) => console.error(error));
+//     });
+//     app.post("/api/scores/add", (req, res) => {
+//       scores.insertOne(req.body)
+//         .then((result) => {
+//           res.redirect("/");
+//           console.log(result);
+//         })
+//         .catch((error) => console.error(error));
+//     });
   
-    // app.put("/quotes", (req, res) => {
-    //   quotesCollection
-    //     .findOneAndUpdate(
-    //       { name: "Saira" },
-    //       {
-    //         $set: {
-    //           name: req.body.name,
-    //           quote: req.body.quote,
-    //         },
-    //       },
-    //       {
-    //         upsert: true,
-    //       }
-    //     )
-    //     .then((result) => {
-    //       res.json("Success");
-    //     })
-    //     .catch((error) => console.error(error));
-    // });
+//     // app.put("/quotes", (req, res) => {
+//     //   quotesCollection
+//     //     .findOneAndUpdate(
+//     //       { name: "Saira" },
+//     //       {
+//     //         $set: {
+//     //           name: req.body.name,
+//     //           quote: req.body.quote,
+//     //         },
+//     //       },
+//     //       {
+//     //         upsert: true,
+//     //       }
+//     //     )
+//     //     .then((result) => {
+//     //       res.json("Success");
+//     //     })
+//     //     .catch((error) => console.error(error));
+//     // });
   
-    // app.delete("/quotes", (req, res) => {
-    //   quotesCollection.deleteOne(
-    //       { name: req.body.name }
-    //     ).then(result => {
-    //           if (result.deletedCount === 0) {
-    //               return res.json('No quote to delete')
-    //             }
-    //         res.json(`Deleted Darth Vadar's quote`)
-    //       })
-    //       .catch(error => console.error(error)) 
-    //      });
-  });
+//     // app.delete("/quotes", (req, res) => {
+//     //   quotesCollection.deleteOne(
+//     //       { name: req.body.name }
+//     //     ).then(result => {
+//     //           if (result.deletedCount === 0) {
+//     //               return res.json('No quote to delete')
+//     //             }
+//     //         res.json(`Deleted Darth Vadar's quote`)
+//     //       })
+//     //       .catch(error => console.error(error)) 
+//     //      });
+//   });
   
 app.get('/',(req, res) => {
     console.log("HAAAI")
