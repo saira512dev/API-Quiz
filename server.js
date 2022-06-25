@@ -2,10 +2,14 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const cors = require('cors');
 const MongoClient = require("mongodb").MongoClient;
+const multer = require('multer');
+const upload = multer();
 const app = express();
 app.use(cors())
-
+app.use(express.urlencoded());
 app.use(bodyParser.json());
+app.use(upload.array()); 
+app.use(express.static('public'));
 const PORT = 8000
 
 const questions = [
@@ -81,6 +85,8 @@ MongoClient.connect(
     app.get("/api/scores/all", (req, res) => {
       scores
         .find()
+        .sort({score:-1})
+        .sort({time:1})
         .toArray()
         .then((results) => {
           res.json(results)
@@ -88,6 +94,7 @@ MongoClient.connect(
         .catch((error) => console.error(error));
     });
     app.post("/api/scores/add", (req, res) => {
+        console.log(req)
       scores.insertOne(req.body)
         .then((result) => {
           //res.redirect("/");
