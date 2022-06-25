@@ -97,7 +97,7 @@ MongoClient.connect(
         console.log(req)
       scores.insertOne(req.body)
         .then((result) => {
-          //res.redirect("/");
+          res.redirect("localhost:5500/Quiz-api/index.html");
           res.send(result)
         })
         .catch((error) => console.error(error));
