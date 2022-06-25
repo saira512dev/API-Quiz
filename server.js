@@ -97,7 +97,7 @@ MongoClient.connect(
         console.log(req)
       scores.insertOne(req.body)
         .then((result) => {
-          res.send(result)
+          
         })
         .catch((error) => console.error(error));
     });
