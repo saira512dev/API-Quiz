@@ -97,7 +97,7 @@ MongoClient.connect(
         console.log(req)
       scores.insertOne(req.body)
         .then((result) => {
-          res.redirect('https://cool-chimera-d5ec76.netlify.app/')
+          res.send(result)
         })
         .catch((error) => console.error(error));
     });
