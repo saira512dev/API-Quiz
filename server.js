@@ -95,42 +95,9 @@ MongoClient.connect(
         })
         .catch((error) => console.error(error));
     });
-  
-    // app.put("/quotes", (req, res) => {
-    //   quotesCollection
-    //     .findOneAndUpdate(
-    //       { name: "Saira" },
-    //       {
-    //         $set: {
-    //           name: req.body.name,
-    //           quote: req.body.quote,
-    //         },
-    //       },
-    //       {
-    //         upsert: true,
-    //       }
-    //     )
-    //     .then((result) => {
-    //       res.json("Success");
-    //     })
-    //     .catch((error) => console.error(error));
-    // });
-  
-    // app.delete("/quotes", (req, res) => {
-    //   quotesCollection.deleteOne(
-    //       { name: req.body.name }
-    //     ).then(result => {
-    //           if (result.deletedCount === 0) {
-    //               return res.json('No quote to delete')
-    //             }
-    //         res.json(`Deleted Darth Vadar's quote`)
-    //       })
-    //       .catch(error => console.error(error)) 
-    //      });
   });
   
 app.get('/',(req, res) => {
-    console.log("HAAAI")
     res.sendFile(__dirname + '/index.html')
 })
 
