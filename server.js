@@ -85,8 +85,7 @@ MongoClient.connect(
     app.get("/api/scores/all", (req, res) => {
       scores
         .find()
-        .sort({score:-1})
-        .sort({time:1})
+        .sort({score:-1, time:1})
         .toArray()
         .then((results) => {
           res.json(results)
