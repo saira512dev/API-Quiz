@@ -2,14 +2,17 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const cors = require('cors');
 const MongoClient = require("mongodb").MongoClient;
+const ObjectId = require("mongodb").ObjectID;
 const multer = require('multer');
 const upload = multer();
 const app = express();
 app.use(cors())
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(upload.array()); 
 app.use(express.static('public'));
+const { check, validationResult } = require('express-validator');
+
 const PORT = 8000
 
 const questions = [
@@ -81,6 +84,8 @@ MongoClient.connect(
     console.log("Connected to Database");
     const db = client.db("QUIZ");
     const scores = db.collection("scores");
+    const questions = db.collection("questions");
+
   
     app.get("/api/scores/all", (req, res) => {
       scores
@@ -94,9 +99,68 @@ MongoClient.connect(
     });
     app.post("/api/scores/add", (req, res) => {
         console.log(req)
-      scores.insertOne(req.body)
+        scores.insertOne(req.body)
         .then((result) => {
           res.json("OK")
+        })
+        .catch((error) => console.error(error));
+    });
+
+    app.post("/api/questions/add",[
+        check('question').exists().withMessage('Question cannot be empty.'),
+        check('choices').exists().withMessage('Choices cannot be empty.'),
+        check('answer_index').exists().withMessage('Answer index cannot be empty.'),
+        check('info').exists().withMessage('Info cannot be empty.'),
+    ] ,(req, res) => {
+        const errors = validationResult(req);
+        console.log(req)
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        questions.insertOne(req.body)
+        .then((result) => {
+          res.json("OK")
+        })
+        .catch((error) => console.error(error));
+    });
+    app.put("/api/questions/edit/:id",[
+        check('question').exists().withMessage('Question cannot be empty.'),
+        check('choices').exists().withMessage('Choices cannot be empty.'),
+        check('answer_index').exists().withMessage('Answer index cannot be empty.'),
+        check('info').exists().withMessage('Info cannot be empty.'),
+    ] ,(req, res) => {
+        const errors = validationResult(req);
+        console.log(req)
+        console.log(ObjectId(req.params.id))
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        questions.updateOne({ "_id" : ObjectId(req.params.id)},{$set : req.body})
+        // Send response in here
+        .then((result) => {
+            res.send('Item Updated!');
+        })
+        .catch((error) => console.error(error));
+    });
+    app.get("/api/questions/all", (req, res) => {
+        console.log(req)
+        questions.
+        find()
+       // .sort({score:-1, time:1})
+        .toArray()
+        .then((results) => {
+            res.json(results)
+        })
+        .catch((error) => console.error(error));
+    });
+    app.post("/api/questions/delete/:id",(req, res) => {
+        const errors = validationResult(req);
+        console.log(req)
+        console.log(ObjectId(req.params.id))
+        questions.deleteOne({ "_id" : ObjectId(req.params.id)})
+        // Send response in here
+        .then((result) => {
+            res.send('Item deleted!');
         })
         .catch((error) => console.error(error));
     });
