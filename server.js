@@ -106,14 +106,13 @@ MongoClient.connect(
         .catch((error) => console.error(error));
     });
 
-    app.post("/api/questions/add",[
-        check('question').exists().withMessage('Question cannot be empty.'),
-        check('choices').exists().withMessage('Choices cannot be empty.'),
-        check('answer_index').exists().withMessage('Answer index cannot be empty.'),
-        check('info').exists().withMessage('Info cannot be empty.'),
-    ] ,(req, res) => {
-        const errors = validationResult(req);
-        console.log(req)
+    app.post("/api/questions/add" ,(req, res) => {
+        const errors = []
+        if(req.question ="") errors.push("Question cannot be empy")
+        if(req.choices ="") errors.push("Choices cannot be empy")
+        if(req.answer_index ="") errors.push("Answer index cannot be empy")
+        if(req.info ="") errors.push("Info cannot be empy")
+
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
