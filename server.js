@@ -117,11 +117,14 @@ MongoClient.connect(
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        questions.insertOne(req.body)
-        .then((result) => {
-          res.json("OK")
-        })
-        .catch((error) => console.error(error));
+        else{
+            questions.insertOne(req.body)
+            .then((result) => {
+              res.json("OK")
+            })
+            .catch((error) => console.error(error));
+        }
+       
     });
     app.put("/api/questions/edit/:id",[
         check('question').exists().withMessage('Question cannot be empty.'),
@@ -158,7 +161,7 @@ MongoClient.connect(
         console.log(ObjectId(req.params.id))
         questions.deleteOne({ "_id" : ObjectId(req.params.id)})
         // Send response in here
-        .then((res) => {
+        .then((results) => {
            return res.status(200)
         })
         .catch((error) => console.error(error));
