@@ -154,13 +154,12 @@ MongoClient.connect(
         .catch((error) => console.error(error));
     });
     app.post("/api/questions/delete/:id",(req, res) => {
-        const errors = validationResult(req);
         console.log(req)
         console.log(ObjectId(req.params.id))
         questions.deleteOne({ "_id" : ObjectId(req.params.id)})
         // Send response in here
         .then((result) => {
-            res.send('Item Deleted!');
+           return res.status(200)
         })
         .catch((error) => console.error(error));
     });
@@ -177,3 +176,4 @@ app.get('/api/js',(req, res) => {
 app.listen(process.env.PORT || PORT,() => {
     console.log("SERVER IS UP & RUNNING");
 })
+
