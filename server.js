@@ -158,7 +158,7 @@ MongoClient.connect(
         console.log(ObjectId(req.params.id))
         questions.deleteOne({ "_id" : ObjectId(req.params.id)})
         // Send response in here
-        .then((result) => {
+        .then((res) => {
            return res.status(200)
         })
         .catch((error) => console.error(error));
