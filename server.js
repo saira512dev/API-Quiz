@@ -117,14 +117,12 @@ MongoClient.connect(
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        else{
-            questions.insertOne(req.body)
-            .then((result) => {
-              res.json("OK")
-            })
-            .catch((error) => console.error(error));
-        }
-       
+
+        questions.insertOne(req.body)
+        .then((result) => {
+            res.json("OK")
+        })
+        .catch((error) => console.error(error));
     });
     app.put("/api/questions/edit/:id",[
         check('question').exists().withMessage('Question cannot be empty.'),
