@@ -126,11 +126,12 @@ MongoClient.connect(
         .catch((error) => console.error(error));
     });
     app.get("/api/questions/:id",(req, res) => {
-        questions.findOne({"_id" : ObjectId(req.params.id)})
-        .then((result) => {
-           return res.status(200).json(result)
-        })
-        .catch((error) => console.error(error));
+        console.log(typeof(req.params.id))
+        // questions.findOne({"_id" : req.params.id})
+        // .then((result) => {
+        //    return res.status(200).json(result)
+        // })
+        // .catch((error) => console.error(error));
     });
     app.put("/api/questions/edit/:id",[
         check('question').exists().withMessage('Question cannot be empty.'),
