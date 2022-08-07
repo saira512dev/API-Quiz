@@ -113,7 +113,7 @@ MongoClient.connect(
         check('info').exists().withMessage('Info cannot be empty.'),
     ] ,(req, res) => {
         const errors = validationResult(req);
-        console.log(req)
+        console.log(req,errors, "HEROKU");
         if (!errors.isEmpty()) {
             return res.status(400).send({ errors: errors.array() });
         }
