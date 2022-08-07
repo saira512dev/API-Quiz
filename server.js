@@ -6,12 +6,12 @@ const ObjectId = require("mongodb").ObjectID;
 const multer = require('multer');
 const upload = multer();
 const app = express();
+const { check, validationResult } = require('express-validator');
 app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(upload.array()); 
 app.use(express.static('public'));
-const { check, validationResult } = require('express-validator');
 
 const PORT = 8000
 
