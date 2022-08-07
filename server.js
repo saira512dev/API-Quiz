@@ -127,10 +127,8 @@ MongoClient.connect(
     });
     app.get("/api/questions/:id",(req, res) => {
         console.log(req.params.id)
-        questions.findOne({"_id" : ObjectId(req.params.id)})
-        // Send response in here
+        questions.findOne({"_id" :new  ObjectId(req.params.id)})
         .then((result) => {
-            if(!result) { return res.status(404).send("Failed")}
            return res.status(200).json(result)
         })
         .catch((error) => console.error(error));
