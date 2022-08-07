@@ -107,10 +107,10 @@ MongoClient.connect(
     });
 
     app.post("/api/questions/add",[
-        check('question').exists().withMessage('Question cannot be empty.'),
+        check('newQuestion.question').exists().withMessage('Question cannot be empty.'),
         check('choices').exists().withMessage('Choices cannot be empty.'),
-        check('answer_index').exists().withMessage('Answer index cannot be empty.'),
-        check('info').exists().withMessage('Info cannot be empty.'),
+        check('newQuestion.newQuestion.answer_index').exists().withMessage('Answer index cannot be empty.'),
+        check('newQuestion.info').exists().withMessage('Info cannot be empty.'),
     ] ,(req, res) => {
         const errors = validationResult(req);
         console.log(req,errors, "HEROKU");
@@ -118,7 +118,7 @@ MongoClient.connect(
             return res.status(400).send({ errors: errors.array() });
         }
 
-        questions.insertOne(req.body)
+        questions.insertOne(req.body.newQuestion)
         .then((result) => {
             res.json("OK")
         })
