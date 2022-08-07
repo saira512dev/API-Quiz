@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(upload.array()); 
 app.use(express.static('public'));
-const { check, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
 
 const PORT = 8000
@@ -108,10 +108,10 @@ MongoClient.connect(
     });
 
     app.post("/api/questions/add",[
-        check('question').exists().withMessage('Question cannot be empty.'),
-        check('choices').isEmpty().withMessage('Choices cannot be empty.'),
-        check('answer_index').exists().withMessage('Answer index cannot be empty.'),
-        check('info').exists().withMessage('Info cannot be empty.'),
+        body('question').exists().withMessage('Question cannot be empty.'),
+        body('choices').exists().withMessage('Choices cannot be empty.'),
+        body('answer_index').exists().withMessage('Answer index cannot be empty.'),
+        body('info').exists().withMessage('Info cannot be empty.'),
     ] ,(req, res) => {
         const errors = validationResult(req);
         console.log(req.body,errors, "HEROKU");
