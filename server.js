@@ -119,7 +119,7 @@ MongoClient.connect(
             return res.status(400).send({ errors: errors.array() });
         }
 
-        questions.insertOne(req.body.newQuestion)
+        questions.insertOne(req)
         .then((result) => {
             res.json("OK")
         })
