@@ -130,7 +130,7 @@ MongoClient.connect(
         questions.findOne({"_id" : ObjectId(req.params.id)})
         // Send response in here
         .then((result) => {
-            if(!result) { return res.status(404).end()}
+            if(!result) { return res.status(404).send("Failed")}
            return res.status(200).json(result)
         })
         .catch((error) => console.error(error));
