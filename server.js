@@ -7,10 +7,10 @@ const multer = require('multer');
 const upload = multer();
 const app = express();
 app.use(cors())
-app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 app.use(upload.array()); 
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }))
 const { check, validationResult } = require('express-validator');
 
 
@@ -125,7 +125,15 @@ MongoClient.connect(
         })
         .catch((error) => console.error(error));
     });
-    app.get("/api/questions/view/:id",(req, res) => {
+    app.get("/api/questions/view/:id",
+    [
+        check('id').not().isEmpty().withMessage('Id cannot be empty.')
+    ],
+    (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
         console.log(ObjectId(req.params.id))
         questions.find(ObjectId(req.params.id)).toArray()
         .then((result) => {
