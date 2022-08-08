@@ -107,6 +107,19 @@ MongoClient.connect(
         .catch((error) => console.error(error));
     });
 
+    app.get("/api/questions/view/:id",
+    (req, res) => {
+        console.log(req)
+        questions.
+        find({'_id' : ObjectId(req.params.id)})
+       // .sort({score:-1, time:1})
+        .toArray()
+        .then((results) => {
+            res.json(results)
+        })
+        .catch((error) => console.error(error));
+    });
+
     app.post("/api/questions/add",[
         check('question').not().isEmpty().withMessage('Question cannot be empty.'),
         check('choices').not().isEmpty().withMessage('Choices cannot be empty.'),
@@ -125,24 +138,7 @@ MongoClient.connect(
         })
         .catch((error) => console.error(error));
     });
-    app.get("/api/questions/view/:id",
-    [
-        check('id').not().isEmpty().withMessage('Id cannot be empty.')
-    ],
-    (req, res) => {
-        const errors = validationResult(req);
-        console.log(req)
-        console.log(ObjectId(req.params.id))
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
-        console.log(ObjectId(req.params.id))
-        questions.find(ObjectId(req.params.id)).toArray()
-        .then((result) => {
-           return res.status(200).json(result)
-        })
-        .catch((error) => console.error(error));
-    });
+    
     app.put("/api/questions/edit/:id",[
         check('question').exists().withMessage('Question cannot be empty.'),
         check('choices').exists().withMessage('Choices cannot be empty.'),
