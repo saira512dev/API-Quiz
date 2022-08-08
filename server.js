@@ -135,7 +135,7 @@ MongoClient.connect(
             return res.status(400).json({ errors: errors.array() });
         }
         console.log(ObjectId(req.params.id))
-        questions.find(ObjectId(req.params.id)).toArray()
+        questions.find(ObjectId(req.params.id))
         .then((result) => {
            return res.status(200).json(result)
         })
