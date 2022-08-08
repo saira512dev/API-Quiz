@@ -125,7 +125,7 @@ MongoClient.connect(
         })
         .catch((error) => console.error(error));
     });
-    app.get("/api/questions/:id",(req, res) => {
+    app.get("/api/questions/view/:id",(req, res) => {
         console.log(typeof(req.params.id))
         // questions.findOne({"_id" : req.params.id})
         // .then((result) => {
