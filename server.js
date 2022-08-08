@@ -131,11 +131,13 @@ MongoClient.connect(
     ],
     (req, res) => {
         const errors = validationResult(req);
+        console.log(req)
+        console.log(ObjectId(req.params.id))
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
         console.log(ObjectId(req.params.id))
-        questions.find(ObjectId(req.params.id))
+        questions.find(ObjectId(req.params.id)).toArray()
         .then((result) => {
            return res.status(200).json(result)
         })
