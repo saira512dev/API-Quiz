@@ -127,7 +127,7 @@ MongoClient.connect(
     });
     app.get("/api/questions/view/:id",(req, res) => {
         console.log(ObjectId(req.params.id))
-        questions.findOne({"_id" : ObjectId(req.params.id)})
+        questions.findOne({"_id" : new ObjectId(req.params.id)})
         .then((result) => {
            return res.status(200).send(result)
         })
