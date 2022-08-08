@@ -112,7 +112,6 @@ MongoClient.connect(
         console.log(req)
         questions.
         find({'_id' : ObjectId(req.params.id)})
-       // .sort({score:-1, time:1})
         .toArray()
         .then((results) => {
             res.json(results)
@@ -152,7 +151,6 @@ MongoClient.connect(
             return res.status(400).json({ errors: errors.array() });
         }
         questions.updateOne({ "_id" : ObjectId(req.params.id)},{$set : req.body})
-        // Send response in here
         .then((result) => {
             res.json('Item Updated!');
         })
@@ -162,7 +160,6 @@ MongoClient.connect(
         console.log(req)
         questions.
         find()
-       // .sort({score:-1, time:1})
         .toArray()
         .then((results) => {
             res.json(results)
@@ -173,7 +170,6 @@ MongoClient.connect(
         console.log(req)
         console.log(ObjectId(req.params.id))
         questions.deleteOne({ "_id" : ObjectId(req.params.id)})
-        // Send response in here
         .then((results) => {
            return res.status(200).json("DELETED")
         })
