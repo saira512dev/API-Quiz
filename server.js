@@ -126,10 +126,10 @@ MongoClient.connect(
         .catch((error) => console.error(error));
     });
     app.get("/api/questions/view/:id",(req, res) => {
-        console.log(typeof(req.params.id))
+        console.log(ObjectId(req.params.id))
         questions.findOne({"_id" : ObjectId(req.params.id)})
         .then((result) => {
-           return res.status(200).json(result)
+           return res.status(200).send(result)
         })
         .catch((error) => console.error(error));
     });
