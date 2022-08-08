@@ -140,10 +140,10 @@ MongoClient.connect(
     });
     
     app.put("/api/questions/edit/id/:id",[
-        check('question').exists().withMessage('Question cannot be empty.'),
-        check('choices').exists().withMessage('Choices cannot be empty.'),
-        check('answer_index').exists().withMessage('Answer index cannot be empty.'),
-        check('info').exists().withMessage('Info cannot be empty.'),
+        check('question').not().isEmpty().withMessage('Question cannot be empty.'),
+        check('choices').not().isEmpty().withMessage('Choices cannot be empty.'),
+        check('answer_index').not().isEmpty().withMessage('Answer index cannot be empty.'),
+        check('info').not().isEmpty().withMessage('Info cannot be empty.'),
     ] ,(req, res) => {
         const errors = validationResult(req);
         console.log(req)
