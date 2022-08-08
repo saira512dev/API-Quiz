@@ -154,7 +154,7 @@ MongoClient.connect(
         questions.updateOne({ "_id" : ObjectId(req.params.id)},{$set : req.body})
         // Send response in here
         .then((result) => {
-            res.send('Item Updated!');
+            res.json('Item Updated!');
         })
         .catch((error) => console.error(error));
     });
