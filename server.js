@@ -139,7 +139,7 @@ MongoClient.connect(
         .catch((error) => console.error(error));
     });
     
-    app.put("/api/questions/edit/:id",[
+    app.put("/api/questions/edit/id/:id",[
         check('question').exists().withMessage('Question cannot be empty.'),
         check('choices').exists().withMessage('Choices cannot be empty.'),
         check('answer_index').exists().withMessage('Answer index cannot be empty.'),
