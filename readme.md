@@ -1,5 +1,7 @@
 ### API (Backend For JS Quiz App)
 
+![image](images/quizapp.png)
+
 
 ### Description :
 This is a collection of APIs used as a backend for my JS Quiz app. These APIs perform GET,POST,PUT and DELETE operations and thus help the admin to add,delete,update & create questions. It also has API to create an entry on scoreboard and get all scores.
