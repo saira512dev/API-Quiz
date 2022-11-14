@@ -9,7 +9,7 @@ This is a collection of APIs used as a backend for my JS Quiz app. These APIs pe
 ### Link to project: https://js-quiz-100devs.netlify.app/admin
 
 ### How It's Made:
-Tech used: HTML, CSS, JavaScript, Node.js,Express.js,Mongodb;
+Tech used: Node.js,Express.js,Mongodb;
 
 I kept the front end quite simple without any frameworks involved. I.e, using Html, Css & Vanilla Js. Backend is built on Node.js using Express.js framework. Mongodb is the database used and querying the database felt really easy and simple.The app lets users attend JS quiz and test their knowledge. The admin section let's them add new questions to the quiz, edit the existing ones and delete them too. The ones who want to enter their scores on scoreboard can opt for that and they can see where they stand among their fellow devs.
 
