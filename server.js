@@ -12,6 +12,8 @@ app.use(upload.array());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }))
 const { check, validationResult } = require('express-validator');
+require("dotenv").config();
+
 
 
 const PORT = 8000
@@ -78,10 +80,8 @@ const PORT = 8000
 //         'info' : "Length is a string property, not a method."
 //     },
 // ]
-
-MongoClient.connect(
-   'mongodb+srv://quiz_user:quizUser_109@clusterquiz.qu2x8.mongodb.net/QUIZ?retryWrites=true&w=majority'
-    ).then((client) => {
+console.log(process.env.DB_STRING)
+MongoClient.connect(process.env.DB_STRING).then((client) => {
     console.log("Connected to Database");
     const db = client.db("QUIZ");
     const scores = db.collection("scores");
@@ -192,7 +192,7 @@ app.get('/',(req, res) => {
 
 
 
-app.listen(process.env.PORT || PORT,() => {
-    console.log("SERVER IS UP & RUNNING");
+app.listen(process.env.PORT ,() => {
+    console.log("SERVER IS UP & RUNNING"+process.env.PORT);
 })
 
